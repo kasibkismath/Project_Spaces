@@ -1,0 +1,152 @@
+.padded {
+	padding: 70px 20px;
+}
+
+#brand-name {
+	color: #B8DB4D;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.tpad {
+	padding-top: 20px;
+}
+
+.navbar .nav>li>a {
+	font-size: 20px;
+	font-family: 'Cabin', sans-serif;
+}
+
+.navbar .nav>li>a:hover {
+	background: #FFDA45;
+}
+
+.nav-items {
+	padding: 0 30px;
+}
+
+.navbar {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.active a {
+	background: #FFDA45 !important;
+}
+
+.features {
+	padding-top: 110px;
+	padding-bottom: 100px;
+	background: url(../images/features-bg.jpg) repeat;
+	height: 200px;
+}
+
+.text-muted {
+	color: #e9e6df;
+	font-weight: 100;
+}
+
+.signup-btn {
+	background: #FF3333 !important;
+	border: 3px solid #e9e6df;
+	margin: 0 10px 0 170px;
+	padding: 15px 25px;
+	color: #fff;
+}
+
+.login-btn {
+	background: #93BC16 !important;
+	border: 3px solid #e9e6df;
+	margin: 0 5px;
+	padding: 15px 25px;
+	color: #fff;
+}
+
+.org-btn {
+	background: #D6AD33;
+	font-weight: bold;
+	border: 2px solid #e9e6df;
+	padding: 15px 10px;
+	color: #e9e6df;
+}
+
+.btnPad {
+	padding-top: 20px;
+}
+
+.addSpace {
+	background: url("../images/addSpace.jpg") repeat;
+}
+
+.required-fields {
+	color: red;
+	font-size: 20px;
+}
+
+.modal-signupBtn {
+	margin-top: 10px;
+}
+
+div.error {
+	color: red;
+	font-family: arial;
+	font-size: small;
+	font-weight: bold;
+}
+
+.ftr {
+	padding: 110px 0 50px 0;
+	background: url(../images/ftr-bg.jpg) repeat;
+}
+
+.ftr_space {
+	padding: 0 10px;
+}
+
+.ftr address, .ftr p, .ftr a {
+	color: #fff;
+}
+
+#confirmPass #matchedPasswords {
+	margin-top: 10px;
+}
+
+#confirmPass #unMatchedPasswords {
+	margin-top: 10px;
+}
+
+@media screen and ( min-width :0px) and (max-width: 767px) {
+	.signup-btn {
+		margin: 0 0 0 70px;
+	}
+	.features {
+		padding-top: 130px !important;
+		padding-bottom: 320px !important;
+	}
+}
+
+@media screen and ( min-width :768px) and (max-width: 991px) {
+	.signup-btn {
+		margin: 0 0 0 50px;
+	}
+	.features {
+		padding-top: 120px !important;
+		padding-bottom: 320px !important;
+	}
+}
+
+@media screen and ( min-width :992px) {
+	.signup-btn {
+		margin-left: 160px;
+	}
+	.login-btn {
+		margin: 0 0;
+	}
+	.nav-items {
+		padding: 0 0px;
+	}
+	.features {
+		padding-top: 135px;
+		padding-bottom: 250px;
+	}
+}
