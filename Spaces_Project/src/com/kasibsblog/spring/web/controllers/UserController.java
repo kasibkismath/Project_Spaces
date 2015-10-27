@@ -72,20 +72,5 @@ public class UserController {
 		
 		return "usercreated";
 
-		/*
-		 * try { userservice.createUser(user); } catch (Exception ex) {
-		 * result.rejectValue("email", "Dulicate.user.email",
-		 * "User with this email address already exists"); return "index";
-		 * System.out.println(ex.getClass());
-		 * //model.addAttribute("signupmodal", "on"); }
-		 */
-
-		/*
-		 * if (userservice.userExists(user.getEmail())) { System.out.println(
-		 * "Duplicate name, Name already exists"); result.rejectValue("email",
-		 * "Duplicate.user.email","User with this email address already exists"
-		 * ); model.addAttribute("signupmodal", "on"); return "index"; }
-		 */
-
 	}
 }

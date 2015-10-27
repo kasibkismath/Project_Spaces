@@ -10,6 +10,7 @@
 		<config>WebContent/WEB-INF/spaces-servlet.xml</config>
 		<config>src/com/kasibsblog/spring/web/configs/spacesDao.xml</config>
 		<config>src/com/kasibsblog/spring/web/configs/spaceService.xml</config>
+		<config>src/com/kasibsblog/spring/web/configs/security-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

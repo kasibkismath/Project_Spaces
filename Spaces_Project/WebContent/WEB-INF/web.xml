@@ -20,25 +20,31 @@
     <servlet-name>spaces</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
   <description>Spaces DB</description>
-	<resource-ref>
-		<description>Database Connection</description>
-		<res-ref-name>jdbc/spacesProject</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
-	
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
+  <resource-ref>
+    <description>Database Connection</description>
+    <res-ref-name>jdbc/spacesProject</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
 			classpath:com/kasibsblog/spring/web/configs/spacesDao.xml
 			classpath:com/kasibsblog/spring/web/configs/spaceService.xml
+			classpath:com/kasibsblog/spring/web/configs/security-context.xml
 		</param-value>
-	</context-param>
-	
+  </context-param>
+  <filter>
+    <display-name>springSecurityFilterChain</display-name>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
