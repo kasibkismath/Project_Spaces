@@ -18,8 +18,6 @@ import com.kasibsblog.spring.web.service.SpaceService;
 @Controller
 public class SpaceController {
 	
-	//This is a comment
-
 	@Autowired
 	private SpaceService spaceService;
 
