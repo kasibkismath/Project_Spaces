@@ -46,7 +46,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					<span class="lead">User has been created - <c:out value="${user.name}"></c:out></span>
+					<span class="lead">User has been created - <c:out value="${user.username}"></c:out></span>
 				</div>
 			</div>
 		</div>

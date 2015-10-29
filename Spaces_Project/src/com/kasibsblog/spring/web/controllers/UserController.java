@@ -20,6 +20,13 @@ public class UserController {
 
 	@Autowired
 	private UserService userservice;
+	
+	@RequestMapping("/login")
+	public String showLogin(Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("loginModal", "on");
+		return "index";
+	}
 
 	@RequestMapping("/")
 	public String showIndex(Model model) {
@@ -39,8 +46,8 @@ public class UserController {
 				model.addAttribute("noEmailError", false);
 			}
 
-			// Name error alert
-			if (result.getFieldErrorCount("name") == 0) {
+			// username error alert
+			if (result.getFieldErrorCount("username") == 0) {
 				model.addAttribute("noNameError", true);
 			} else {
 				model.addAttribute("noNameError", false);
@@ -63,7 +70,7 @@ public class UserController {
 		try{
 			userservice.createUser(user);
 		}catch(DuplicateKeyException e){
-			result.rejectValue("email", "DuplicateKey.user.email", "User with this email already exists");
+			result.rejectValue("username", "DuplicateKey.user.username", "Username already exists");
 			model.addAttribute("signupmodal", "on");
 			model.addAttribute("duplicateUser", true);
 			return "index";

@@ -19,19 +19,19 @@ public class UserDao {
 
 	public boolean createUser(User user) {
 		MapSqlParameterSource props = new MapSqlParameterSource();
-		props.addValue("name", user.getName());
+		props.addValue("username", user.getUsername());
 		props.addValue("email", user.getEmail());
 		props.addValue("password", user.getPassword());
 		props.addValue("authority", user.getAuthority());
 		props.addValue("enabled", user.isEnabled());
 
-		return dataSource.update("insert into user(name, email, password, authority, enabled) "
-				+ "values(:name, :email, :password, :authority, :enabled)", props) == 1;
+		return dataSource.update("insert into user(username, email, password, authority, enabled) "
+				+ "values(:username, :email, :password, :authority, :enabled)", props) == 1;
 	}
 	
-	public boolean userExists(String email) {
-		return dataSource.queryForObject("select count(*) from user where email=:email",
-				new MapSqlParameterSource("email", email), Integer.class) > 0;
+	public boolean userExists(String username) {
+		return dataSource.queryForObject("select count(*) from user where username=:username",
+				new MapSqlParameterSource("username", username), Integer.class) > 0;
 	}
 
 }

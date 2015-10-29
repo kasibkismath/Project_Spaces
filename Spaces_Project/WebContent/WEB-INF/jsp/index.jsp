@@ -58,7 +58,7 @@
 									<a class="btn btn-default btn-lg signup-btn" role="button"
 										data-toggle="modal" href="#signup-modal">SIGN UP</a> <a
 										class="btn btn-default btn-lg login-btn" role="button"
-										href="#">LOGIN</a>
+										href="#login-modal" data-toggle="modal">LOGIN</a>
 								</p>
 							</div>
 							<!-- Sign up modal -->
@@ -79,7 +79,18 @@
 												commandName="user" method="post" id="signUpFormDetails">
 												<div class="form-group">
 													<c:if
-														test="${not noEmailError and not empty noEmailError or duplicateUser}">
+														test="${(not noNameError and not empty noNameError) or duplicateUser}">
+														<div class="alert alert-danger" role="alert">
+															<span class="glyphicon glyphicon-warning-sign"></span><br>
+															<sf:errors path="username"></sf:errors>
+														</div>
+													</c:if>
+													<label for="username">Username</label>
+													<sf:input type="text" class="form-control" id="username"
+														placeholder="Username" path="username" />
+												</div>
+												<div class="form-group">
+													<c:if test="${not noEmailError and not empty noEmailError}">
 														<div class="alert alert-danger" role="alert">
 															<span class="glyphicon glyphicon-warning-sign"></span><br>
 															<sf:errors path="email"></sf:errors>
@@ -88,17 +99,6 @@
 													<label for="email">Email address</label>
 													<sf:input type="email" class="form-control" id="email"
 														placeholder="Email" path="email" />
-												</div>
-												<div class="form-group">
-													<c:if test="${not noNameError and not empty noNameError}">
-														<div class="alert alert-danger" role="alert">
-															<span class="glyphicon glyphicon-warning-sign"></span><br>
-															<sf:errors path="name"></sf:errors>
-														</div>
-													</c:if>
-													<label for="name">Name</label>
-													<sf:input type="text" class="form-control" id="name"
-														placeholder="Name" path="name" />
 												</div>
 												<div class="form-group">
 													<c:if
@@ -130,6 +130,43 @@
 												<button type="submit"
 													class="btn btn-success modal-signupBtn">SIGN UP</button>
 											</sf:form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Login Modal -->
+							<div class="modal fade" id="login-modal" tabindex="-1"
+								role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<h4 class="modal-title" id="myModalLabel">Login</h4>
+										</div>
+										<div class="modal-body">
+											<c:if test="${param.error != null}">
+												<div class="alert alert-danger">
+													<strong>Error!</strong> Username or Password is incorrect
+												</div>
+											</c:if>
+											<form name="loginForm"
+												action="${pageContext.request.contextPath}/j_spring_security_check"
+												method="post">
+												<div class="form-group">
+													<label for="loginUsername">Username</label> <input type="text"
+														class="form-control" id="loginUsername" placeholder="Username"
+														name="j_username" />
+												</div>
+												<div class="form-group">
+													<label for="loginPassword">Password</label> <input
+														type="password" class="form-control" id="loginPassword"
+														placeholder="Password" name="j_password" />
+												</div>
+												<button type="submit" class="btn btn-success">LOGIN</button>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -178,12 +215,29 @@
 		$('#matchedPasswords').hide();
 
 		signup_modal = "${signupmodal}";
+		login_modal = "${loginModal}";
 
 		if (signup_modal == "on") {
 			$(document).ready(function() {
 				$('#signup-modal').modal('show');
-			})
+			});
 		}
+
+		if (login_modal == "on") {
+			$(document).ready(function() {
+				$('#login-modal').modal('show');
+			});
+		}
+
+		//setting sign up modal focus
+		$('#login-modal').on('shown.bs.modal', function() {
+			$('#loginUsername').focus();
+		});
+
+		// setting login modal focus
+		$('#signup-modal').on('shown.bs.modal', function() {
+			$('#username').focus();
+		});
 	</script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/static/js/spaces.js"></script>

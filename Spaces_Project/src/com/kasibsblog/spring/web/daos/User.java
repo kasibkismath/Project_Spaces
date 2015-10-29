@@ -12,9 +12,9 @@ public class User {
 	@ValidEmail
 	private String email;
 
-	@NotBlank(message = "Name cannot be blank")
-	@Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters")
-	private String name;
+	@NotBlank(message = "Username cannot be blank")
+	@Size(min = 5, max = 20, message = "Username must be between 5 and 15 characters")
+	private String username;
 
 	@Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters")
 	@Pattern(regexp = "^\\S+$", message = "Password cannot contain space(s)")
@@ -27,20 +27,20 @@ public class User {
 
 	}
 
-	public User(String name, String email, String password, String authority, boolean enabled) {
-		this.name = name;
+	public User(String username, String email, String password, String authority, boolean enabled) {
+		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.authority = authority;
 		this.enabled = enabled;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
