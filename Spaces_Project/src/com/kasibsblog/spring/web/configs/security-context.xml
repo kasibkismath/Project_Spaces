@@ -12,27 +12,35 @@
 					password="kasib1234" />
 			</security:user-service>
 		</security:authentication-provider>
-		
+
 		<security:authentication-provider>
-			<security:jdbc-user-service data-source-ref="dataSource"
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
 				authorities-by-username-query="select username, authority from user where binary username=?"
 				users-by-username-query="select username, password, enabled from user where binary username=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
+
+	<bean id="myAuthenticationSuccessHandler"
+		class="com.kasibsblog.spring.web.configs.MySimpleUrlAuthenticationSuccessHandler" />
 
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/createUser"
 			access="permitAll" />
 		<security:intercept-url pattern="/usercreated"
 			access="permitAll" />
-		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/static/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/dashboard"
 			access="permitAll" />
 		<security:intercept-url pattern="/spaces"
 			access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<security:form-login login-page="/login"
-			authentication-failure-url="/login?error=true" />
+			authentication-failure-url="/login?error=true"
+			authentication-success-handler-ref="myAuthenticationSuccessHandler" />
 	</security:http>
 </beans>

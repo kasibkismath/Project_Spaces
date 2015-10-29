@@ -27,6 +27,13 @@ public class UserController {
 		model.addAttribute("loginModal", "on");
 		return "index";
 	}
+	
+	@RequestMapping("/dashboard")
+	public String showDashboard(Model model) {
+		//model.addAttribute("user", new User());
+		return "dashboard";
+	}
+	
 
 	@RequestMapping("/")
 	public String showIndex(Model model) {
