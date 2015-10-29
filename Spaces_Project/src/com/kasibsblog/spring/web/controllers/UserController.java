@@ -29,9 +29,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/dashboard")
-	public String showDashboard(Model model) {
-		//model.addAttribute("user", new User());
+	public String showDashboard() {
 		return "dashboard";
+	}
+	
+	@RequestMapping("/loggedout")
+	public String ShowLogout(Model model) {
+		model.addAttribute("user", new User());
+		return "index";
 	}
 	
 

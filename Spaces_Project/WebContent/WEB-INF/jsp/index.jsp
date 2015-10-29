@@ -149,16 +149,17 @@
 										<div class="modal-body">
 											<c:if test="${param.error != null}">
 												<div class="alert alert-danger">
-													<strong>Error!</strong> Username or Password is incorrect
+													<span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Username
+													or Password is incorrect
 												</div>
 											</c:if>
 											<form name="loginForm"
 												action="${pageContext.request.contextPath}/j_spring_security_check"
 												method="post">
 												<div class="form-group">
-													<label for="loginUsername">Username</label> <input type="text"
-														class="form-control" id="loginUsername" placeholder="Username"
-														name="j_username" />
+													<label for="loginUsername">Username</label> <input
+														type="text" class="form-control" id="loginUsername"
+														placeholder="Username" name="j_username" />
 												</div>
 												<div class="form-group">
 													<label for="loginPassword">Password</label> <input
