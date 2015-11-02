@@ -21,6 +21,8 @@ public class UserController {
 	@Autowired
 	private UserService userservice;
 	
+	
+	// View Resolver controller for index page
 	@RequestMapping("/login")
 	public String showLogin(Model model) {
 		model.addAttribute("user", new User());
