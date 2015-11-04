@@ -17,8 +17,8 @@
 	font-family: 'Cabin', sans-serif;
 }
 
-.navbar .nav>li>a:hover {
-	background: #FFDA45;
+#logout-link{
+	padding-right: 15px;
 }
 
 .nav-items {

@@ -29,22 +29,34 @@
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
 		id="home">
-		<div class="navbar-header">
-			<a class="navbar-brand" id="brand-name"
-				href="${pageContext.request.contextPath}">Spaces</a>
-			<div style="padding: 10px" class="pull-right">
-				<a href='<c:url value="/j_spring_security_logout"></c:url>'>Log
-					out</a>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" id="brand-name"
+					href="${pageContext.request.contextPath}">Spaces</a>
+			</div>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">My Spaces</a></span></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="logout-link"><span class="glyphicon glyphicon-user"></span>
+						<span><a
+							href='<c:url value="/j_spring_security_logout"></c:url>'>Log
+								out</a></span></li>
+
+
+				</ul>
 			</div>
 		</div>
 	</nav>
-
-	<p>Dashboard Page!!</p>
-
-	<div style="padding: 10px">
-		<a href='<c:url value="/j_spring_security_logout"></c:url>'>Log
-			out</a>
-	</div>
 	<div class="main-content">
 		<div class="container" style="height: 350px"></div>
 	</div>
@@ -80,5 +92,8 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
 		src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+	<script>
+		$('#logout-link').removeClass();
+	</script>
 </body>
 </html>
