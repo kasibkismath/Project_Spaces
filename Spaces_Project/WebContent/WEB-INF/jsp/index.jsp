@@ -166,6 +166,11 @@
 														type="password" class="form-control" id="loginPassword"
 														placeholder="Password" name="j_password" />
 												</div>
+												<div class="checkbox">
+													<label> <input type="checkbox"
+														name="_spring_security_remember_me" checked="checked"> Remember me
+													</label>
+												</div>
 												<button type="submit" class="btn btn-success">LOGIN</button>
 											</form>
 										</div>
