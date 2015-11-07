@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +37,25 @@
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
 		id="home">
 		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#index-collapse"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
 			<a class="navbar-brand" id="brand-name"
 				href="${pageContext.request.contextPath}">Spaces</a>
+		</div>
+		<div class="collapse navbar-collapse" id="index-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+					<li id="go-to-dashboard"><span
+						class="glyphicon glyphicon-menu-right"></span> <span><a
+							href='<c:url value="/dashboard"></c:url>'>Go to Dashboard</a></span></li>
+				</sec:authorize>
+
+			</ul>
 		</div>
 	</nav>
 	<!--End Navigation-->
@@ -168,7 +187,8 @@
 												</div>
 												<div class="checkbox">
 													<label> <input type="checkbox"
-														name="_spring_security_remember_me" checked="checked"> Remember me
+														name="_spring_security_remember_me" checked="checked">
+														Remember me
 													</label>
 												</div>
 												<button type="submit" class="btn btn-success">LOGIN</button>

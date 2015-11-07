@@ -17,8 +17,25 @@
 	font-family: 'Cabin', sans-serif;
 }
 
-#logout-link{
-	padding-right: 15px;
+#logout-link {
+	padding-right: 25px;
+	padding-top: 10px
+}
+
+#logout-link a {
+	text-decoration: none;
+	color: #000;
+}
+
+#go-to-dashboard {
+	padding-right: 35px;
+	padding-top: 10px;
+}
+
+#go-to-dashboard a {
+	font-weight: bold;
+	color:black;
+	text-decoration: none;
 }
 
 .nav-items {
@@ -28,6 +45,15 @@
 .navbar {
 	padding-top: 20px;
 	padding-bottom: 20px;
+}
+
+#nav-elements {
+	padding-left: 30px;
+}
+
+#nav-elements li a {
+	font-size: medium;
+	font-weight: bold;
 }
 
 .active a {
@@ -122,6 +148,15 @@ div.error {
 	.features {
 		padding-top: 130px !important;
 		padding-bottom: 320px !important;
+	}
+	#logout-link {
+		padding-left: 15px;
+	}
+	#nav-elements {
+		padding-left: 0;
+	}
+	#go-to-dashboard {
+		padding-right: 25px;
 	}
 }
 
