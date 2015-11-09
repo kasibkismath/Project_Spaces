@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="spacesApp">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +27,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body ng-controller="mainController">
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
 		id="home">
 		<div class="container-fluid">
@@ -41,8 +42,7 @@
 				<a class="navbar-brand" id="brand-name"
 					href="${pageContext.request.contextPath}">Spaces</a>
 			</div>
-			<div class="collapse navbar-collapse"
-				id="dashboard-collapse">
+			<div class="collapse navbar-collapse" id="dashboard-collapse">
 				<ul class="nav navbar-nav" id="nav-elements">
 					<li><a href="#">My Spaces</a></li>
 					<li><a href="#">Settings</a></li>
@@ -58,9 +58,75 @@
 			</div>
 		</div>
 	</nav>
+	<!-- End of Navigation -->
 	<div class="main-content">
-		<div class="container" style="height: 350px"></div>
+		<div class="container tpad-dashboard" style="height: 1000px">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- Table -->
+					<table class="table">
+						<tr>
+							<th>Name</th>
+							<th>Street</th>
+							<th>City</th>
+							<th>State</th>
+							<th>Country</th>
+							<th>Contact</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<%-- <c:forEach var="space" items="${spaces}"> --%>
+							<tr ng-repeat="space in spaces">
+								<td>{{space.name}}</td>
+								<td>{{space.street}}</td>
+								<td>{{space.city}}</td>
+								<td>{{space.state}}</td>
+								<td>{{space.country}}</td>
+								<td>{{space.contact}}</td>
+								<td><a href="#" class="btn btn-primary">Edit</a></td>
+
+								<td><a href="#space-delete-modal"
+									class="open-SpaceDeleteModal btn btn-danger"
+									id="space-delete-btn" data-toggle="modal"
+									data-name='{{space.name}}' data-space-id='{{space.id}}'>Delete</a></td>
+							</tr>
+							<!-- Delete Modal -->
+							<div class="modal fade" id="space-delete-modal" tabindex="-1"
+								role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<h4 class="modal-title" id="myModalLabel">Delete Space</h4>
+										</div>
+										<div class="modal-body">
+											<sf:form
+												action="${pageContext.request.contextPath}/dashboard"
+												commandName="space" method="post">
+												<sf:input type="hidden" name="id" path="id" value=""
+													id="spaceId" />
+												<div id="modal-space-name" style="padding-bottom: 30px">
+													Do you want to delete the Space - <span></span>?
+												</div>
+												<hr>
+												<input type="submit" class="btn btn-primary"
+													name="deleteSpace" value="Delete Space" />
+											</sf:form>
+										</div>
+									</div>
+								</div>
+							</div>
+						<%-- </c:forEach> --%>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
+	<!-- End of main content -->
 	<div class="ftr">
 		<div class="container">
 			<div class="row">
@@ -86,6 +152,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- End of footer -->
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -95,6 +162,24 @@
 		src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
 	<script>
 		$('#logout-link').removeClass();
+
+		$(document).on("click", ".open-SpaceDeleteModal", function() {
+			var spaceName = $(this).data('name');
+			var spaceId = $(this).data('space-id');
+
+			$(".modal-body #modal-space-name span").text(spaceId);
+
+			$(".modal-body #spaceId").val(spaceId);
+			
+			console.log($('.modal-body #spaceId').val());
+
+		});
+
+		/* setTimeout(function() {
+			window.location.reload(1);
+		}, 5000); */
 	</script>
+	<script src="//code.angularjs.org/1.4.7/angular.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/js/app.js"></script>
 </body>
 </html>

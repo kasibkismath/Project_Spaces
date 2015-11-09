@@ -12,6 +12,10 @@
 	padding-top: 20px;
 }
 
+.tpad-dashboard {
+	padding-top: 150px;
+}
+
 .navbar .nav>li>a {
 	font-size: 20px;
 	font-family: 'Cabin', sans-serif;
@@ -34,8 +38,16 @@
 
 #go-to-dashboard a {
 	font-weight: bold;
-	color:black;
+	color: black;
 	text-decoration: none;
+}
+
+#space-delete-btn {
+	margin-left: -60px
+}
+
+#modal-space-name span{
+	font-weight: bold;
 }
 
 .nav-items {
@@ -157,6 +169,9 @@ div.error {
 	}
 	#go-to-dashboard {
 		padding-right: 25px;
+	}
+	#space-delete-btn {
+		margin-left: 0px
 	}
 }
 

@@ -31,6 +31,8 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/dashboard"
 			access="isAuthenticated()" />
+			<security:intercept-url pattern="/getSpaces"
+			access="permitAll" />
 		<security:intercept-url pattern="/spaces"
 			access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll" />

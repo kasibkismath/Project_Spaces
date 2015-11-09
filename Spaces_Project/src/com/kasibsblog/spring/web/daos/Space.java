@@ -3,6 +3,8 @@ package com.kasibsblog.spring.web.daos;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Space {
 
 	private int id;
@@ -21,11 +23,11 @@ public class Space {
 
 	@Size(min = 2, max = 20, message = "State should be between 2 and 20 characters")
 	private String state;
-	
+
 	@NotNull
 	@Size(min = 3, max = 60, message = "Country should be between 3 and 60 characters")
 	private String country;
-	
+
 	@NotNull
 	@Size(min = 10, max = 10, message = "Contact should be 10 digits")
 	private String contact;
@@ -42,6 +44,7 @@ public class Space {
 		this.country = country;
 		this.contact = contact;
 	}
+		
 
 	public Space(int id, String name, String street, String city, String state, String country, String contact) {
 		this.id = id;
@@ -114,5 +117,7 @@ public class Space {
 		return "Space [id=" + id + ", name=" + name + ", street=" + street + ", city=" + city + ", state=" + state
 				+ ", country=" + country + ", contact=" + contact + "]";
 	}
+
+	
 
 }

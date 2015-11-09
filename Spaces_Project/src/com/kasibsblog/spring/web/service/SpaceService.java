@@ -18,4 +18,14 @@ public class SpaceService {
 		return spacedoa.getSpace();
 	}
 
+	public List<Space> getSpaces(String username) {
+		return spacedoa.getSpace(username);
+		
+	}
+
+	public void delete(int id) {
+		spacedoa.delete(id);
+		
+	}
+
 }

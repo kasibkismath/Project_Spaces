@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SpaceDOA {
 
 	private NamedParameterJdbcTemplate dataSource;
-	
+
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = new NamedParameterJdbcTemplate(dataSource);
@@ -32,11 +32,11 @@ public class SpaceDOA {
 		return dataSource.update("insert into space(name,street,city,state,country,contact) "
 				+ "values(:name,:street,:city,:state,:country,:contact)", props) == 1;
 	}
-	
+
 	@Transactional
-	public int[] createSpaces(List<Space> space){
+	public int[] createSpaces(List<Space> space) {
 		SqlParameterSource[] props = SqlParameterSourceUtils.createBatch(space.toArray());
-		
+
 		return dataSource.batchUpdate("insert into space(id,name,street,city,state,country,contact) "
 				+ "values(:id,:name,:street,:city,:state,:country,:contact)", props);
 	}
@@ -94,12 +94,37 @@ public class SpaceDOA {
 
 	}
 
-	public boolean deleteSpace(String name) {
+	public List<Space> getSpace(String username) {
 
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
-		parameters.addValue("name", name);
+		parameters.addValue("username", username);
 
-		return dataSource.update("delete from space where name=:name", parameters) == 1;
+		return dataSource.query("select * from space where username=:username", parameters, new RowMapper<Space>() {
+
+			public Space mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Space space = new Space();
+
+				space.setId(rs.getInt("id"));
+				space.setName(rs.getString("name"));
+				space.setStreet(rs.getString("street"));
+				space.setCity(rs.getString("city"));
+				space.setState(rs.getString("state"));
+				space.setCountry(rs.getString("country"));
+				space.setContact(rs.getString("contact"));
+
+				return space;
+			}
+
+		});
+
+	}
+
+	public void delete(int id) {
+
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		parameters.addValue("id", id);
+
+		dataSource.update("delete from space where id=:id", parameters);
 	}
 
 }
