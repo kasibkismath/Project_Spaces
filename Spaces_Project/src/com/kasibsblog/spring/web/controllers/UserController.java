@@ -42,14 +42,14 @@ public class UserController {
 
 	@RequestMapping(value="/dashboard")
 	public String showDashboard(Principal principal, Model model, Space space,
-			@RequestParam(value = "deleteSpace", required = false) String id) {
+			@RequestParam(value = "deleteSpace", required = false) String id, 
+			@RequestParam(value = "saveSpace", required = false) String editId ) {
 		
 		String username = principal.getName();
 	
 		List<Space> spaces = spaceService.getSpaces(username);
 		model.addAttribute("spaces", spaces);
 		
-		System.out.println(space.getId());
 		
 		if (id != null) {
 			spaceService.delete(space.getId());
@@ -58,18 +58,16 @@ public class UserController {
 
 		return "dashboard";
 	}
-	
-	@RequestMapping(value="/getSpaces", method=RequestMethod.GET, produces="application/json")
+
+	@RequestMapping(value = "/getSpaces", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Space> getSpace(Principal principal){
-		
+	public List<Space> getSpace(Principal principal) {
+
 		String username = principal.getName();
-		
-		System.out.println(username);
-		
+
 		List<Space> space = new ArrayList<Space>();
 		space = spaceService.getSpaces(username);
-		
+
 		return space;
 	}
 

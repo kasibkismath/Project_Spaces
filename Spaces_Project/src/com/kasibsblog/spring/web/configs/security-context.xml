@@ -7,7 +7,8 @@
 
 	<security:authentication-manager>
 		<security:authentication-provider>
-			<security:jdbc-user-service data-source-ref="dataSource"
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
 				authorities-by-username-query="select username, authority from user where binary username=?"
 				users-by-username-query="select username, password, enabled from user where binary username=?"
 				id="jdbcUserService" />
@@ -31,7 +32,9 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/dashboard"
 			access="isAuthenticated()" />
-			<security:intercept-url pattern="/getSpaces"
+		<security:intercept-url pattern="/getSpaces"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/getSpaceById"
 			access="permitAll" />
 		<security:intercept-url pattern="/spaces"
 			access="permitAll" />

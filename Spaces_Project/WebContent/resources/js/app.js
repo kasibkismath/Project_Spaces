@@ -1,4 +1,4 @@
-var spacesApp = angular.module('spacesApp', []);
+var spacesApp = angular.module('spacesApp', ['ngMessages']);
 
 // services
 spacesApp.service('spacesService', [ '$http', function($http) {
@@ -12,13 +12,34 @@ spacesApp.service('spacesService', [ '$http', function($http) {
 } ]);
 
 // controllers
-spacesApp.controller('mainController', [ '$scope', 'spacesService',
-		function($scope, spacesService) {
+spacesApp.controller('mainController', [ '$scope', '$http', 'spacesService',
+		function($scope, $http, spacesService) {
 
-			spacesService.getSpaces().success(function(result) {
+			// gets the spaces from the controller api
+			spacesService.getSpaces()
+			.success(function(result) {
 				$scope.spaces = result;
 			}).error(function(data, status) {
 				console.log(data);
 			});
+			
+			$scope.editSpaceStreet = '';
 
-		} ]);
+			$scope.showEditDetails = function(id) {
+				$http.get('/spaces/getSpaceById', {
+			        params: {
+			            id : id
+			        }
+			     })
+			     .success(function (result) {
+			          $scope.spaceEditObj = result;
+			          $scope.editSpaceStreet = $scope.spaceEditObj.street;
+			     })
+				.error(function (data, status){
+					console.log(data);
+				});
+				
+				console.log($scope.editSpaceStreet);
+			}
+			
+}]);

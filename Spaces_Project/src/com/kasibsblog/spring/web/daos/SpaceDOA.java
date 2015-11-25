@@ -127,4 +127,29 @@ public class SpaceDOA {
 		dataSource.update("delete from space where id=:id", parameters);
 	}
 
+	public Space getSpaceById(int id) {
+
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", id);
+
+		return dataSource.queryForObject("select * from space where id=:id", params, new RowMapper<Space>() {
+
+			@Override
+			public Space mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Space space = new Space();
+
+				space.setId(rs.getInt("id"));
+				space.setName(rs.getString("name"));
+				space.setStreet(rs.getString("street"));
+				space.setCity(rs.getString("city"));
+				space.setState(rs.getString("state"));
+				space.setCountry(rs.getString("country"));
+				space.setContact(rs.getString("contact"));
+
+				return space;
+			}
+		});
+
+	}
+
 }

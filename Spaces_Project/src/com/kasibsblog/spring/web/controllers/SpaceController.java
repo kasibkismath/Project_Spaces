@@ -1,5 +1,7 @@
 package com.kasibsblog.spring.web.controllers;
 
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kasibsblog.spring.web.daos.Space;
 import com.kasibsblog.spring.web.service.SpaceService;
@@ -20,6 +24,16 @@ public class SpaceController {
 	
 	@Autowired
 	private SpaceService spaceService;
+	
+	//gets the space information for a particular space id
+	@RequestMapping(value = "/getSpaceById", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public Space getSpaceById(@RequestParam (value="id") int idFromAngular) {
+		
+		Space space = spaceService.getSpaceById(idFromAngular);
+
+		return space;
+	}
 
 	@RequestMapping("/spaces")
 	public String showIndexPage(Model model) {

@@ -76,52 +76,140 @@
 							<th></th>
 							<th></th>
 						</tr>
-						<%-- <c:forEach var="space" items="${spaces}"> --%>
-							<tr ng-repeat="space in spaces">
-								<td>{{space.name}}</td>
-								<td>{{space.street}}</td>
-								<td>{{space.city}}</td>
-								<td>{{space.state}}</td>
-								<td>{{space.country}}</td>
-								<td>{{space.contact}}</td>
-								<td><a href="#" class="btn btn-primary">Edit</a></td>
+						<tr ng-repeat="space in spaces">
+							<td ng-cloak>{{space.name}}</td>
+							<td ng-cloak>{{space.street}}</td>
+							<td ng-cloak>{{space.city}}</td>
+							<td ng-cloak>{{space.state}}</td>
+							<td ng-cloak>{{space.country}}</td>
+							<td ng-cloak>{{space.contact}}</td>
 
-								<td><a href="#space-delete-modal"
-									class="open-SpaceDeleteModal btn btn-danger"
-									id="space-delete-btn" data-toggle="modal"
-									data-name='{{space.name}}' data-space-id='{{space.id}}'>Delete</a></td>
-							</tr>
-							<!-- Delete Modal -->
-							<div class="modal fade" id="space-delete-modal" tabindex="-1"
-								role="dialog" aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-											<h4 class="modal-title" id="myModalLabel">Delete Space</h4>
+							<td ng-cloak><a href="#space-edit-modal"
+								class="open-SpaceEditModal btn btn-primary" data-toggle="modal"
+								data-name='{{space.name}}' data-space-id='{{space.id}}'
+								ng-click="showEditDetails(space.id)"> Edit </a></td>
+
+							<td ng-cloak><a href="#space-delete-modal"
+								class="open-SpaceDeleteModal btn btn-danger"
+								id="space-delete-btn" data-toggle="modal"
+								data-name='{{space.name}}' data-space-id='{{space.id}}'>
+									Delete </a></td>
+						</tr>
+						<!-- ng-repeat finishes -->
+					</table>
+
+					<!-- Delete Modal -->
+					<div class="modal fade" id="space-delete-modal" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel">Delete Space</h4>
+								</div>
+								<div class="modal-body">
+									<sf:form action="${pageContext.request.contextPath}/dashboard"
+										commandName="space" method="post">
+										<sf:input type="hidden" name="id" path="id" value=""
+											id="spaceId" />
+										<div id="modal-space-name" style="padding-bottom: 30px">
+											Do you want to delete the Space - <span></span>?
 										</div>
-										<div class="modal-body">
-											<sf:form
-												action="${pageContext.request.contextPath}/dashboard"
-												commandName="space" method="post">
-												<sf:input type="hidden" name="id" path="id" value=""
-													id="spaceId" />
-												<div id="modal-space-name" style="padding-bottom: 30px">
-													Do you want to delete the Space - <span></span>?
-												</div>
-												<hr>
-												<input type="submit" class="btn btn-primary"
-													name="deleteSpace" value="Delete Space" />
-											</sf:form>
-										</div>
-									</div>
+										<hr>
+										<input type="button" class="btn btn-default" value="Cancel"
+											data-dismiss="modal" />
+										<input type="submit" class="btn btn-primary"
+											name="deleteSpace" value="Delete Space" />
+									</sf:form>
 								</div>
 							</div>
-						<%-- </c:forEach> --%>
-					</table>
+						</div>
+					</div>
+
+					<!-- Edit Modal -->
+					<div class="modal fade" id="space-edit-modal" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel">Edit Space</h4>
+								</div>
+								<div class="modal-body">
+									<sf:form action="${pageContext.request.contextPath}/dashboard"
+										commandName="space" method="post" class="form-horizontal"
+										name="editForm">
+
+										<sf:input type="hidden" name="id" path="id" value=""
+											id="spaceEditId" />
+
+										<div class="form-group">
+											<label for="space-edit-id">ID</label><input type="text"
+												class="form-control" id="space-edit-id" placeholder="ID"
+												value="{{spaceEditObj.id}}" disabled>
+										</div>
+
+										<div class="form-group">
+										
+											<label for="space-edit-street">Street</label> 
+											
+											<div ng-messages="editForm.spaceEditStreet.$error"
+												role="alert">
+												<div ng-message="required" class="alert alert-danger">Street is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Street must be at least 10
+													characters</div>
+											</div>
+											
+											<input
+												type="text" class="form-control" name="spaceEditStreet"
+												placeholder="Street" value="{{spaceEditObj.street}}" 
+												required minlength="10" ng-model="editSpaceStreet" />
+
+										</div>
+
+										<div class="form-group">
+											<label for="space-edit-city">City</label> <input type="text"
+												class="form-control" id="space-edit-city" placeholder="City"
+												value="{{spaceEditObj.city}}">
+										</div>
+
+										<div class="form-group">
+											<label for="space-edit-city">State</label> <input type="text"
+												class="form-control" id="space-edit-state"
+												placeholder="State" value="{{spaceEditObj.state}}">
+										</div>
+
+										<div class="form-group">
+											<label for="space-edit-country">Country</label> <input
+												type="text" class="form-control" id="space-edit-country"
+												placeholder="Country" value="{{spaceEditObj.country}}">
+										</div>
+
+										<div class="form-group">
+											<label for="space-edit-contact">Contact</label> <input
+												type="text" class="form-control" id="space-edit-contact"
+												placeholder="Contact" value="{{spaceEditObj.contact}}">
+										</div>
+
+										<div class="modal-footer">
+										<input type="button" class="btn btn-default"
+											data-dismiss="modal" value="Cancel" />
+
+										<input type="submit" class="btn btn-primary" name="saveSpace"
+											value="Save Space" />
+										</div>
+
+									</sf:form>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -163,23 +251,28 @@
 	<script>
 		$('#logout-link').removeClass();
 
+		// delete modal 
 		$(document).on("click", ".open-SpaceDeleteModal", function() {
 			var spaceName = $(this).data('name');
 			var spaceId = $(this).data('space-id');
 
-			$(".modal-body #modal-space-name span").text(spaceId);
+			$(".modal-body #modal-space-name span").text(spaceName);
 
 			$(".modal-body #spaceId").val(spaceId);
-			
-			console.log($('.modal-body #spaceId').val());
 
 		});
 
-		/* setTimeout(function() {
-			window.location.reload(1);
-		}, 5000); */
+		// edit modal
+		$(document).on("click", ".open-SpaceEditModal", function() {
+			var spaceName = $(this).data('name');
+			var spaceId = $(this).data('space-id');
+
+			$(".modal-body #spaceEditId").val(spaceId);
+
+		});
 	</script>
 	<script src="//code.angularjs.org/1.4.7/angular.min.js"></script>
+	<script src="//code.angularjs.org/1.4.7/angular-messages.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/js/app.js"></script>
 </body>
 </html>

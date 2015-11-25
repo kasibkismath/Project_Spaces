@@ -1,3 +1,14 @@
+/* ng-cloak style */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+/* My space edit modal */
+#space-edit-modal .modal-body{
+	margin-left:15px;
+	margin-right:15px;
+}
+
 .padded {
 	padding: 70px 20px;
 }
@@ -43,7 +54,7 @@
 }
 
 #space-delete-btn {
-	margin-left: -60px
+	margin-left: -45px
 }
 
 #modal-space-name span{
@@ -155,7 +166,7 @@ div.error {
 
 @media screen and ( min-width :0px) and (max-width: 767px) {
 	.signup-btn {
-		margin: 0 0 0 70px;
+		margin: 0 0 0 40px;
 	}
 	.features {
 		padding-top: 130px !important;
@@ -171,7 +182,10 @@ div.error {
 		padding-right: 25px;
 	}
 	#space-delete-btn {
-		margin-left: 0px
+		margin-left: -10px
+	}
+	.ftr{
+		width: 100%;
 	}
 }
 
@@ -182,6 +196,9 @@ div.error {
 	.features {
 		padding-top: 120px !important;
 		padding-bottom: 320px !important;
+	}
+	#space-delete-btn {
+		margin-left: -10px
 	}
 }
 

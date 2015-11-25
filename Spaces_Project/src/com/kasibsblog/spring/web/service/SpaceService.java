@@ -28,4 +28,8 @@ public class SpaceService {
 		
 	}
 
+	public Space getSpaceById(int id) {
+		return spacedoa.getSpaceById(id);
+	}
+
 }
