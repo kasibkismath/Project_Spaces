@@ -64,33 +64,21 @@ public class SpaceController {
 		return "spaces";
 	}
 
-	@RequestMapping("/addSpace")
-	public String addSpace(Model model) {
-		model.addAttribute("space", new Space());
-		return "addSpace";
+	// add a space
+	@RequestMapping(value = "/addSpace", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public void addSpace(@RequestBody Space space) {
+		
+		String name = space.getName();
+		String street = space.getStreet();
+		String city = space.getCity();
+		String state = space.getState();
+		String country = space.getCountry();
+		String contact = space.getContact();
+		String username = space.getUser().getUsername();
+		
+		System.out.println(name + " " + street + " " + city + " " + state + " " + country + " " + contact + " " + username);
+		
+		spaceService.addSpace(space);
 	}
-
-	@RequestMapping(value = "/createdSpace", method = RequestMethod.POST)
-	public String createdSpace(Model model, @Valid Space space, BindingResult result) {
-
-		if (result.hasErrors()) {
-			System.out.println("Form validation is unsuccessful!");
-
-			List<ObjectError> errors = result.getAllErrors();
-
-			for (ObjectError error : errors) {
-				System.out.println(error.getDefaultMessage());
-			}
-
-			model.addAttribute("status", "no");
-			return "addSpace";
-
-		}
-
-		System.out.println("Form validated");
-		model.addAttribute("status", "yes");
-		return "addSpace";
-
-	}
-
 }

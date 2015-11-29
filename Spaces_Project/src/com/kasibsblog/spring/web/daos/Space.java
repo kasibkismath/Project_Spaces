@@ -31,6 +31,8 @@ public class Space {
 	@NotNull
 	@Size(min = 10, max = 10, message = "Contact should be 10 digits")
 	private String contact;
+	
+	private User user;
 
 	public Space() {
 
@@ -58,6 +60,14 @@ public class Space {
 
 	public int getId() {
 		return id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void setId(int id) {

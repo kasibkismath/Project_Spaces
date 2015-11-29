@@ -61,8 +61,6 @@ spacesApp.controller('mainController', [
 			$scope.updateSpace = function(id, name, street, city, state,
 					country, contact) {
 				
-				console.log(id + " " + name + " " + street + " " + city + " " + state + " " + country + " " + contact);
-				
 				var updatedSpace = {
 					id : id,
 					name : name,
@@ -76,13 +74,53 @@ spacesApp.controller('mainController', [
 				$http.post('/spaces/updateSpace', updatedSpace)
 				.success(function(result){
 					$scope.spaceCall();
-					console.log("Post successfully!!");
 				})
 				.error(function(data, status){
-					console.log("Post Unsuccessful!!!");
 					console.log(data);
 				});
 				
+			};
+			
+			// adds a new space
+			$scope.addSpace = function(){
+				
+				// check state has value, else "null"
+				var state = $scope.addSpaceSate || null;
+				
+				// get's the username from the add new space form - hidden input
+				var username = angular.element(document.getElementsByName('currentUser')[0]).val();
+				
+				var addedSpace = {
+					name : $scope.addSpaceName,
+					street : $scope.addSpaceStreet,
+					city : $scope.addSpaceCity,
+					state : state,
+					country : $scope.addSpaceCountry,
+					contact : $scope.addSpaceContact,
+					user : {
+						email:"",
+						username:username,
+						password:"",
+						authority:"",
+						enabled:true
+						}
+				};
+				
+				
+				$http.post('/spaces/addSpace', addedSpace)
+				.success(function(result){
+					$scope.spaceCall();
+					
+					$scope.addSpaceName = '';
+					$scope.addSpaceStreet = '';
+					$scope.addSpaceCity = '';
+					$scope.addSpaceState = '';
+					$scope.addSpaceCountry = '';
+					$scope.addSpaceContact = '';
+				})
+				.error(function(data, status){
+					console.log(data);
+				})
 			};
 			
 			$scope.spaceCall();

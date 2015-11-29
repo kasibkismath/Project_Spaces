@@ -37,4 +37,9 @@ public class SpaceService {
 		
 	}
 
+	public void addSpace(Space space) {
+		spacedoa.createSpace(space);
+		
+	}
+
 }

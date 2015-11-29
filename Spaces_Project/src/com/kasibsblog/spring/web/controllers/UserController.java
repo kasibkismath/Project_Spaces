@@ -49,7 +49,7 @@ public class UserController {
 		
 		// returns the username to the dashboard
 		model.addAttribute("currentUser", username);
-	
+		
 		List<Space> spaces = spaceService.getSpaces(username);
 		model.addAttribute("spaces", spaces);
 		

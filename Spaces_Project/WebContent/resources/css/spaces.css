@@ -3,7 +3,17 @@
   display: none !important;
 }
 
-/* current user -dashboard*/
+/* Add Space Form */
+#addSpaceForm{
+	padding: 0 10px;
+}
+
+/* Add space container - dashboard */
+.addSpaceContainer{
+	padding: 20px 50px;
+}
+
+/* current user -dashboard */
 #currentUser{
 	padding: 10px 20px;
 }

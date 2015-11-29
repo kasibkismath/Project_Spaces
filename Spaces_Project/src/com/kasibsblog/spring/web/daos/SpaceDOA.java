@@ -26,11 +26,11 @@ public class SpaceDOA {
 		this.dataSource = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public boolean createSpace(Space space) {
+	public void createSpace(Space space) {
 		BeanPropertySqlParameterSource props = new BeanPropertySqlParameterSource(space);
 
-		return dataSource.update("insert into space(name,street,city,state,country,contact) "
-				+ "values(:name,:street,:city,:state,:country,:contact)", props) == 1;
+		 dataSource.update("insert into space(name,street,city,state,country,contact,username) "
+				+ "values(:name,:street,:city,:state,:country,:contact,:user.username)", props);
 	}
 
 	@Transactional
@@ -151,6 +151,11 @@ public class SpaceDOA {
 			}
 		});
 
+	}
+
+	public void addSpace(Space space) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

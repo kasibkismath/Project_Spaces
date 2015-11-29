@@ -64,6 +64,148 @@
 		<div class="container tpad-dashboard" style="height: 1000px">
 			<div class="row">
 				<div class="col-xs-12">
+					<div class="addSpaceContainer pull-right">
+						<button type="button" class="btn btn-success" data-toggle="modal"
+							data-target="#addSpaceModal">Add a New Space</button>
+					</div>
+
+					<!-- Add New Space Modal -->
+					<div class="modal fade" id="addSpaceModal" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel">Add a New Space</h4>
+								</div>
+								<div class="modal-body">
+									<form class="form-horizontal" name="addSpaceForm"
+										id="addSpaceForm" ng-submit="addSpace()">
+										
+											<input type="hidden" name="currentUser" value="${currentUser}">
+											
+										<div class="form-group">
+											<label for="space-add-name">Name</label>
+
+											<div ng-messages="addSpaceForm.spaceAddName.$error"
+												role="alert">
+												<div ng-message="required" class="alert alert-danger">Name
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Name
+													must be at least 7 characters</div>
+											</div>
+
+											<input type="text" name="spaceAddName" class="form-control"
+												id="space-add-name" placeholder="Name" required
+												minlength="7" ng-model="addSpaceName">
+										</div>
+
+
+										<div class="form-group">
+
+											<label for="space-add-street">Street</label>
+
+											<div ng-messages="addSpaceForm.spaceAddStreet.$error"
+												role="alert">
+												<div ng-message="required" class="alert alert-danger">Street
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Street
+													must be at least 10 characters</div>
+											</div>
+
+											<input type="text" class="form-control" id="space-add-street"
+												name="spaceAddStreet" placeholder="Street" required
+												minlength="10" ng-model="addSpaceStreet" />
+
+										</div>
+
+										<div class="form-group">
+											<label for="space-add-city">City</label>
+
+											<div ng-messages="addSpaceForm.spaceAddCity.$error"
+												role="alert">
+												<div ng-message="required" class="alert alert-danger">City
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">City
+													must be at least 5 characters</div>
+											</div>
+
+											<input type="text" name="spaceAddCity" class="form-control"
+												id="space-add-city" placeholder="City" required
+												minlength="5" ng-model="addSpaceCity">
+										</div>
+
+										<div class="form-group">
+											<label for="space-add-state">State</label>
+
+											<div ng-messages="addSpaceForm.spaceAddState.$error"
+												role="alert">
+												<div ng-message="minlength" class="alert alert-danger">State
+													must be at least 2 characters</div>
+											</div>
+
+											<input type="text" name="spaceAddState" class="form-control"
+												id="space-add-state" placeholder="State" minlength="2"
+												ng-model="addSpaceState">
+										</div>
+
+										<div class="form-group">
+											<label for="space-add-country">Country</label>
+
+											<div ng-messages="addSpaceForm.spaceAddCountry.$error"
+												role="alert">
+												<div ng-message="required" class="alert alert-danger">Country
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Country
+													must be at least 3 characters</div>
+											</div>
+
+											<input type="text" name="spaceAddCountry"
+												class="form-control" id="space-add-country"
+												placeholder="Country" required minlength="3"
+												ng-model="addSpaceCountry">
+										</div>
+
+										<div class="form-group">
+											<label for="space-add-contact">Contact</label>
+
+											<div ng-messages=addSpaceForm.spaceAddContact.$error
+												"
+												role="alert">
+												<div ng-message="required" class="alert alert-danger">Contact
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Contact
+													must be at least 10 characters</div>
+												<div ng-message="maxlength" class="alert alert-danger">Contact
+													must be less than 13 characters</div>
+											</div>
+
+											<input name="spaceAddContact" type="text"
+												class="form-control" id="space-add-contact"
+												placeholder="Contact" required minlength="10"
+												ng-maxlength="13" ng-model="addSpaceContact">
+										</div>
+
+										<div class="modal-footer">
+											<input type="button" class="btn btn-default"
+												data-dismiss="modal" value="Cancel" /> <input type="submit"
+												class="btn btn-primary" name="addSpace" id="addSpace"
+												value="Add Space" />
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End of Add New Space Modal -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
 					<!-- Table -->
 					<table class="table">
 						<tr>
@@ -144,10 +286,6 @@
 								</div>
 								<div class="modal-body">
 									<form class="form-horizontal" name="editForm">
-
-										<%-- <sf:input type="hidden" name="id" path="id" value=""
-											id="spaceEditId" /> --%>
-
 										<div class="form-group">
 											<label for="space-edit-id">ID</label><input type="text"
 												class="form-control" id="space-edit-id" placeholder="ID"
@@ -260,7 +398,8 @@
 										<div class="modal-footer">
 											<input type="button" class="btn btn-default"
 												data-dismiss="modal" value="Cancel" /> <input type="button"
-												class="btn btn-primary" name="saveSpace" id="saveSpace" value="Save Space"
+												class="btn btn-primary" name="saveSpace" id="saveSpace"
+												value="Save Space"
 												ng-click="updateSpace(editSpaceId, editSpaceName, editSpaceStreet, editSpaceCity, editSpaceState, editSpaceCountry, editSpaceContact)" />
 										</div>
 
@@ -329,12 +468,16 @@
 			$(".modal-body #spaceEditId").val(spaceId);
 
 		});
-		
+
 		// close edit modal on click of the Save Space button
-		$('#saveSpace').click(function(){
+		$('#saveSpace').click(function() {
 			$('#space-edit-modal').modal('hide');
 		});
 		
+		// close add space modal in click
+		$('#addSpace').click(function(){
+			$('#addSpaceModal').modal('hide');
+		});
 	</script>
 	<script src="//code.angularjs.org/1.4.7/angular.min.js"></script>
 	<script src="//code.angularjs.org/1.4.7/angular-messages.min.js"></script>
