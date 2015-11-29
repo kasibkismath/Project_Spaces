@@ -41,11 +41,12 @@ public class SpaceDOA {
 				+ "values(:id,:name,:street,:city,:state,:country,:contact)", props);
 	}
 
-	public boolean updateSpace(Space space) {
+	public void updateSpace(Space space) {
+		
 		BeanPropertySqlParameterSource props = new BeanPropertySqlParameterSource(space);
 
-		return dataSource.update("update space set name=:name, street=:street, city=:city,"
-				+ " state=:state, country=:country, contact=:contact where id=:id", props) == 1;
+		dataSource.update("update space set name=:name, street=:street, city=:city,"
+				+ " state=:state, country=:country, contact=:contact where id=:id", props);
 	}
 
 	public List<Space> getSpace() {

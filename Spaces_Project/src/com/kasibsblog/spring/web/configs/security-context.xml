@@ -34,6 +34,8 @@
 			access="isAuthenticated()" />
 		<security:intercept-url pattern="/getSpaces"
 			access="isAuthenticated()" />
+		<security:intercept-url pattern="/updateSpace"
+			access="isAuthenticated()" />
 		<security:intercept-url pattern="/getSpaceById"
 			access="permitAll" />
 		<security:intercept-url pattern="/spaces"

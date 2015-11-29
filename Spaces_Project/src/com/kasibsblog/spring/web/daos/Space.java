@@ -10,7 +10,7 @@ public class Space {
 	private int id;
 
 	@NotNull
-	@Size(min = 7, max = 60, message = "Name should be between 7 and 60 characters")
+	@Size(min = 7, max = 25, message = "Name should be between 7 and 25 characters")
 	private String name;
 
 	@NotNull

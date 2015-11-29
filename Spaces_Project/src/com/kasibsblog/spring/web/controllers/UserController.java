@@ -46,6 +46,9 @@ public class UserController {
 			@RequestParam(value = "saveSpace", required = false) String editId ) {
 		
 		String username = principal.getName();
+		
+		// returns the username to the dashboard
+		model.addAttribute("currentUser", username);
 	
 		List<Space> spaces = spaceService.getSpaces(username);
 		model.addAttribute("spaces", spaces);
@@ -59,17 +62,6 @@ public class UserController {
 		return "dashboard";
 	}
 
-	@RequestMapping(value = "/getSpaces", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	public List<Space> getSpace(Principal principal) {
-
-		String username = principal.getName();
-
-		List<Space> space = new ArrayList<Space>();
-		space = spaceService.getSpaces(username);
-
-		return space;
-	}
 
 	@RequestMapping("/loggedout")
 	public String ShowLogout(Model model) {

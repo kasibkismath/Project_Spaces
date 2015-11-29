@@ -3,6 +3,16 @@
   display: none !important;
 }
 
+/* current user -dashboard*/
+#currentUser{
+	padding: 10px 20px;
+}
+
+#currentUser span{
+	font-size: 15px;
+	font-weight: bold;
+}
+
 /* My space edit modal */
 #space-edit-modal .modal-body{
 	margin-left:15px;

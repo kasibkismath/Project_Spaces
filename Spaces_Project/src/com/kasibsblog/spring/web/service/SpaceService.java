@@ -32,4 +32,9 @@ public class SpaceService {
 		return spacedoa.getSpaceById(id);
 	}
 
+	public void updateSpace(Space space) {
+		spacedoa.updateSpace(space);
+		
+	}
+
 }

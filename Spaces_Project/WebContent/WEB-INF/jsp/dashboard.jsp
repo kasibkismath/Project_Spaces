@@ -48,6 +48,7 @@
 					<li><a href="#">Settings</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li id="currentUser"><span>Welcome, ${currentUser}</span></li>
 					<li id="logout-link"><span class="glyphicon glyphicon-user"></span>
 						<span><a
 							href='<c:url value="/j_spring_security_logout"></c:url>'>Log
@@ -142,12 +143,10 @@
 									<h4 class="modal-title" id="myModalLabel">Edit Space</h4>
 								</div>
 								<div class="modal-body">
-									<sf:form action="${pageContext.request.contextPath}/dashboard"
-										commandName="space" method="post" class="form-horizontal"
-										name="editForm">
+									<form class="form-horizontal" name="editForm">
 
-										<sf:input type="hidden" name="id" path="id" value=""
-											id="spaceEditId" />
+										<%-- <sf:input type="hidden" name="id" path="id" value=""
+											id="spaceEditId" /> --%>
 
 										<div class="form-group">
 											<label for="space-edit-id">ID</label><input type="text"
@@ -156,56 +155,116 @@
 										</div>
 
 										<div class="form-group">
-										
-											<label for="space-edit-street">Street</label> 
-											
+											<label for="space-edit-name">Name</label>
+
+											<div ng-messages="editForm.spaceEditName.$error" role="alert">
+												<div ng-message="required" class="alert alert-danger">Name
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Name
+													must be at least 7 characters</div>
+											</div>
+
+											<input type="text" name="spaceEditName" class="form-control"
+												id="space-edit-id" placeholder="Name"
+												value="{{spaceEditObj.name}}" required minlength="7"
+												ng-model="editSpaceName">
+										</div>
+
+										<div class="form-group">
+
+											<label for="space-edit-street">Street</label>
+
 											<div ng-messages="editForm.spaceEditStreet.$error"
 												role="alert">
-												<div ng-message="required" class="alert alert-danger">Street is required</div>
-												<div ng-message="minlength" class="alert alert-danger">Street must be at least 10
-													characters</div>
+												<div ng-message="required" class="alert alert-danger">Street
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Street
+													must be at least 10 characters</div>
 											</div>
-											
-											<input
-												type="text" class="form-control" name="spaceEditStreet"
-												placeholder="Street" value="{{spaceEditObj.street}}" 
-												required minlength="10" ng-model="editSpaceStreet" />
+
+											<input type="text" class="form-control"
+												name="spaceEditStreet" placeholder="Street"
+												value="{{spaceEditObj.street}}" required minlength="10"
+												ng-model="editSpaceStreet" />
 
 										</div>
 
 										<div class="form-group">
-											<label for="space-edit-city">City</label> <input type="text"
-												class="form-control" id="space-edit-city" placeholder="City"
-												value="{{spaceEditObj.city}}">
+											<label for="space-edit-city">City</label>
+
+											<div ng-messages="editForm.spaceEditCity.$error" role="alert">
+												<div ng-message="required" class="alert alert-danger">City
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">City
+													must be at least 5 characters</div>
+											</div>
+
+											<input type="text" name="spaceEditCity" class="form-control"
+												id="space-edit-city" placeholder="City"
+												value="{{spaceEditObj.city}}" required minlength="5"
+												ng-model="editSpaceCity">
 										</div>
 
 										<div class="form-group">
-											<label for="space-edit-city">State</label> <input type="text"
-												class="form-control" id="space-edit-state"
-												placeholder="State" value="{{spaceEditObj.state}}">
+											<label for="space-edit-city">State</label>
+
+											<div ng-messages="editForm.spaceEditState.$error"
+												role="alert">
+												<div ng-message="minlength" class="alert alert-danger">State
+													must be at least 2 characters</div>
+											</div>
+
+											<input type="text" name="spaceEditState" class="form-control"
+												id="space-edit-state" placeholder="State"
+												value="{{spaceEditObj.state}}" minlength="2"
+												ng-model="editSpaceState">
 										</div>
 
 										<div class="form-group">
-											<label for="space-edit-country">Country</label> <input
-												type="text" class="form-control" id="space-edit-country"
-												placeholder="Country" value="{{spaceEditObj.country}}">
+											<label for="space-edit-country">Country</label>
+
+											<div ng-messages="editForm.spaceEditCountry.$error"
+												role="alert">
+												<div ng-message="required" class="alert alert-danger">Country
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Country
+													must be at least 3 characters</div>
+											</div>
+
+											<input type="text" name="spaceEditCountry"
+												class="form-control" id="space-edit-country"
+												placeholder="Country" value="{{spaceEditObj.country}}"
+												required minlength="3" ng-model="editSpaceCountry">
 										</div>
 
 										<div class="form-group">
-											<label for="space-edit-contact">Contact</label> <input
-												type="text" class="form-control" id="space-edit-contact"
-												placeholder="Contact" value="{{spaceEditObj.contact}}">
+											<label for="space-edit-contact">Contact</label>
+
+											<div ng-messages="editForm.spaceEditContact.$error"
+												role="alert">
+												<div ng-message="required" class="alert alert-danger">Contact
+													is required</div>
+												<div ng-message="minlength" class="alert alert-danger">Contact
+													must be 10 characters</div>
+												<div ng-message="maxlength" class="alert alert-danger">Contact
+													must be 10 characters</div>
+											</div>
+
+											<input name="spaceEditContact" type="text"
+												class="form-control" id="space-edit-contact"
+												placeholder="Contact" value="{{spaceEditObj.contact}}"
+												required minlength="10" maxlength="13"
+												ng-model="editSpaceContact">
 										</div>
 
 										<div class="modal-footer">
-										<input type="button" class="btn btn-default"
-											data-dismiss="modal" value="Cancel" />
-
-										<input type="submit" class="btn btn-primary" name="saveSpace"
-											value="Save Space" />
+											<input type="button" class="btn btn-default"
+												data-dismiss="modal" value="Cancel" /> <input type="button"
+												class="btn btn-primary" name="saveSpace" id="saveSpace" value="Save Space"
+												ng-click="updateSpace(editSpaceId, editSpaceName, editSpaceStreet, editSpaceCity, editSpaceState, editSpaceCountry, editSpaceContact)" />
 										</div>
 
-									</sf:form>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -270,6 +329,12 @@
 			$(".modal-body #spaceEditId").val(spaceId);
 
 		});
+		
+		// close edit modal on click of the Save Space button
+		$('#saveSpace').click(function(){
+			$('#space-edit-modal').modal('hide');
+		});
+		
 	</script>
 	<script src="//code.angularjs.org/1.4.7/angular.min.js"></script>
 	<script src="//code.angularjs.org/1.4.7/angular-messages.min.js"></script>
