@@ -73,10 +73,6 @@
 	text-decoration: none;
 }
 
-#space-delete-btn {
-	margin-left: -45px
-}
-
 #modal-space-name span{
 	font-weight: bold;
 }
@@ -201,8 +197,8 @@ div.error {
 	#go-to-dashboard {
 		padding-right: 25px;
 	}
-	#space-delete-btn {
-		margin-left: -10px
+	#addNewSpaceBtn {
+		margin-right: 65px;
 	}
 	.ftr{
 		width: 100%;
@@ -216,9 +212,6 @@ div.error {
 	.features {
 		padding-top: 120px !important;
 		padding-bottom: 320px !important;
-	}
-	#space-delete-btn {
-		margin-left: -10px
 	}
 }
 

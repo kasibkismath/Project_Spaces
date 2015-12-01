@@ -66,7 +66,7 @@
 				<div class="col-xs-12">
 					<div class="addSpaceContainer pull-right">
 						<button type="button" class="btn btn-success" data-toggle="modal"
-							data-target="#addSpaceModal">Add a New Space</button>
+							data-target="#addSpaceModal" id="addNewSpaceBtn">Add a New Space</button>
 					</div>
 
 					<!-- Add New Space Modal -->
@@ -90,7 +90,7 @@
 										<div class="form-group">
 											<label for="space-add-name">Name</label>
 
-											<div ng-messages="addSpaceForm.spaceAddName.$error"
+											<div ng-messages="addSpaceForm.spaceAddName.$error" ng-if='addSpaceForm.spaceAddName.$dirty'
 												role="alert">
 												<div ng-message="required" class="alert alert-danger">Name
 													is required</div>
@@ -108,7 +108,7 @@
 
 											<label for="space-add-street">Street</label>
 
-											<div ng-messages="addSpaceForm.spaceAddStreet.$error"
+											<div ng-messages="addSpaceForm.spaceAddStreet.$error" ng-if='addSpaceForm.spaceAddStreet.$dirty'
 												role="alert">
 												<div ng-message="required" class="alert alert-danger">Street
 													is required</div>
@@ -125,7 +125,7 @@
 										<div class="form-group">
 											<label for="space-add-city">City</label>
 
-											<div ng-messages="addSpaceForm.spaceAddCity.$error"
+											<div ng-messages="addSpaceForm.spaceAddCity.$error" ng-if='addSpaceForm.spaceAddCity.$dirty'
 												role="alert">
 												<div ng-message="required" class="alert alert-danger">City
 													is required</div>
@@ -141,7 +141,7 @@
 										<div class="form-group">
 											<label for="space-add-state">State</label>
 
-											<div ng-messages="addSpaceForm.spaceAddState.$error"
+											<div ng-messages="addSpaceForm.spaceAddState.$error" ng-if='addSpaceForm.spaceAddState.$dirty'
 												role="alert">
 												<div ng-message="minlength" class="alert alert-danger">State
 													must be at least 2 characters</div>
@@ -155,7 +155,7 @@
 										<div class="form-group">
 											<label for="space-add-country">Country</label>
 
-											<div ng-messages="addSpaceForm.spaceAddCountry.$error"
+											<div ng-messages="addSpaceForm.spaceAddCountry.$error" ng-if='addSpaceForm.spaceAddCountry.$dirty'
 												role="alert">
 												<div ng-message="required" class="alert alert-danger">Country
 													is required</div>
@@ -172,8 +172,7 @@
 										<div class="form-group">
 											<label for="space-add-contact">Contact</label>
 
-											<div ng-messages=addSpaceForm.spaceAddContact.$error
-												"
+											<div ng-messages="addSpaceForm.spaceAddContact.$error" ng-if='addSpaceForm.spaceAddContact.$dirty'
 												role="alert">
 												<div ng-message="required" class="alert alert-danger">Contact
 													is required</div>
@@ -228,12 +227,12 @@
 							<td ng-cloak>{{space.contact}}</td>
 
 							<td ng-cloak><a href="#space-edit-modal"
-								class="open-SpaceEditModal btn btn-primary" data-toggle="modal"
+								class="open-SpaceEditModal btn btn-primary btn-block" data-toggle="modal"
 								data-name='{{space.name}}' data-space-id='{{space.id}}'
 								ng-click="showEditDetails(space.id)"> Edit </a></td>
 
 							<td ng-cloak><a href="#space-delete-modal"
-								class="open-SpaceDeleteModal btn btn-danger"
+								class="open-SpaceDeleteModal btn btn-danger btn-block"
 								id="space-delete-btn" data-toggle="modal"
 								data-name='{{space.name}}' data-space-id='{{space.id}}'>
 									Delete </a></td>
